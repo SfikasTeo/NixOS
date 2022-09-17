@@ -6,7 +6,9 @@ development and desktop use.
 ### Starting up: A list the main resources that will be of use for the installation Guide.
 
 1) manual: https://nixos.org/manual/nixos/stable/index.html#nixos-manual
-2) youtube: https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+2) youtube: 
+* https://www.youtube.com/watch?v=AGVXJ-TIv3Y
+* https://www.youtube.com/user/wilfridtaylor
 3) wiki:	
 * https://nixos.wiki
 * https://nixos.wiki/wiki/NixOS_as_a_desktop
