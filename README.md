@@ -5,13 +5,13 @@ development and desktop use.
 
 ### Starting up: A list the main resources that will be of use.
 
-1) manual:	https://nixos.org/manual/nixos/stable/index.html#nixos-manual
+1) manual: https://nixos.org/manual/nixos/stable/index.html#nixos-manual
 2) wiki:	
-			* https://nixos.wiki
-			* https://nixos.wiki/wiki/NixOS_as_a_desktop
-			* https://nixos.wiki/wiki/Cheatsheet
-			* https://nixos.wiki/wiki/Nix_Ecosystem
-			
+* https://nixos.wiki
+* https://nixos.wiki/wiki/NixOS_as_a_desktop
+* https://nixos.wiki/wiki/Cheatsheet
+* https://nixos.wiki/wiki/Nix_Ecosystem
+	
 3) youtube: https://www.youtube.com/watch?v=AGVXJ-TIv3Y
 	
 				
