@@ -3,14 +3,14 @@ The Nix Ecosystem is a collection of technologies designed to reproducibly build
 
 ## Starting up: The main resources that will be of use for the installation Guide.
  
-* [Manual](https://nixos.org/manual/nixos/stable/index.html#nixos-manual)
+* [The Manual](https://nixos.org/manual/nixos/stable/index.html#nixos-manual)
 * [Nix Package Manager](https://nixos.wiki/wiki/Nix_package_manager) / [Nix Detailed Manual](https://nixos.org/manual/nix/stable/)
-* [Installation Guide - Matthias Benaets](https://www.youtube.com/watch?v=AGVXJ-TIv3Y)
-* [Wil T Channel](https://www.youtube.com/user/wilfridtaylor)
-* [Wiki](https://nixos.wiki)
+* [Nix Wiki](https://nixos.wiki)
 * [Cheatsheet](https://nixos.wiki/wiki/Cheatsheet)
-* [Nix Ecosystem](https://nixos.wiki/wiki/Nix_Ecosystem)
-* [Nix Language](https://nixos.wiki/wiki/Overview_of_the_Nix_Language)
+* [The Nix Ecosystem](https://nixos.wiki/wiki/Nix_Ecosystem)
+* [The Nix Language](https://nixos.wiki/wiki/Overview_of_the_Nix_Language)
+* [YouTube: Installation Guide - Matthias Benaets](https://www.youtube.com/watch?v=AGVXJ-TIv3Y)
+* [Youtube: Wil T Channel](https://www.youtube.com/user/wilfridtaylor)
 
 ## Tips & Tricks
 * <nixpkgs/path> -> path/to/nixpkgs/folder
