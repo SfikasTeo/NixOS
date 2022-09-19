@@ -1,5 +1,5 @@
 # NixOS
-The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies. Nix purpose is reproducibility, based on a functional, declarative and a pure language it minimizes the deviation of builded packages between systems.  
+The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies. Nix purpose is reproducibility, based on a functional, declarative and a pure language, it minimizes the deviation of builded packages between systems.  
 
 ## Starting up: The main resources that will be of use for the installation Guide.
  
