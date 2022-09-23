@@ -19,6 +19,7 @@ Disclaiming: The following information will be customized and specific for my se
 * [Mandatory] Default user will be nixos -> sudo su -> root user
 * [Mandatory] Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation) for Wifi support
 * [Optional] Initially set the timezone `timedatectl set-timezone Europe/Athens`
+* 
 
 
 
