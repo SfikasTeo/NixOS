@@ -19,20 +19,15 @@ Disclaiming: The following information will be customized and specific for my se
 
 ## Installation Proccess
 
-* [Mandatory] Default user will be nixos -> sudo su -> root user
+* [Mandatory] Default user will be nixos -> `sudo su` -> root user
 * [Mandatory] Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation) for Wifi support
 * [Optional] Initially set the timezone `timedatectl set-timezone Europe/Athens`
 * [Mandatory] Setting up Βtrfs  
-~~~
-
-Partition Disk ( /dev/sda ) :
-	1. lsblk -> List drives
-	2. blkdiscard /dev/sda  ->  Updates the drives firmware to signify that the drive is empty 
-	Improves performance and disk longevity (SSD or NVME only).
-	3. Any supported partition utility could be used. We will default to GNU parted -> parted
-	4. Partition Table ->	
-	
-~~~
+  + Partition Disk ( /dev/sda ):   
+     1- `lsblk` -> List drives  
+     2- `blkdiscard /dev/sda` -> Updates the drives firmware to signify that the drive is empty. Improves performance and disk longevity (SSD or NVME only).  
+     3- Any supported partition utility could be used. We will default to GNU parted -> `parted`  
+     4- Partition Table -> `mklabel gpt`  
 
 
 ## Tips & Tricks
