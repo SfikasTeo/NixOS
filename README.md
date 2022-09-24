@@ -27,8 +27,8 @@ Disclaiming: The following information will be customized and specific for my se
 
 Partition Disk ( /dev/sda ) :
 	1. lsblk -> List drives
-	2. blkdiscard /dev/sda  ->  Updates the drives firmware to signify that the drive is empty.
-				                      Improves performance and disk longevity (SSD or NVME only).
+	2. blkdiscard /dev/sda  ->  Updates the drives firmware to signify that the drive is empty 
+	Improves performance and disk longevity (SSD or NVME only).
 	3. Any supported partition utility could be used. We will default to GNU parted -> parted
 	4.Partition Table ->	
 	
