@@ -1,6 +1,6 @@
 # NixOS
 A linux distribution based on the **Nix package Manager**. The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies.   Nix purpose is **reproducibility**, based on a functional, declarative and a pure language, it minimizes the deviation of builded packages between systems.  
-Packages throught the nix-env are installed at user level at **/nix/store**.   
+  Packages throught the nix-env are installed at user level at **/nix/store**.   
 Disclaiming: The following information will be customized and specific for my set-up process. Alternating the guide to your needs is advisable. 
 
 ## Starting up: The main resources that will be of use for the installation Guide
