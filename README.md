@@ -1,6 +1,6 @@
 # NixOS
-A linux distribution based on the Nix package Manager. The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies. Nix purpose is reproducibility, based on a functional, declarative and a pure language, it minimizes the deviation of builded packages between systems.  
-Packages throught the nix-env are installed at user level at /nix/store.  
+A linux distribution based on the **Nix package Manager**. The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies.   Nix purpose is **reproducibility**, based on a functional, declarative and a pure language, it minimizes the deviation of builded packages between systems.  
+Packages throught the nix-env are installed at user level at **/nix/store**.   
 Disclaiming: The following information will be customized and specific for my set-up process. Alternating the guide to your needs is advisable. 
 
 ## Starting up: The main resources that will be of use for the installation Guide
@@ -19,7 +19,14 @@ Disclaiming: The following information will be customized and specific for my se
 * [Mandatory] Default user will be nixos -> sudo su -> root user
 * [Mandatory] Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation) for Wifi support
 * [Optional] Initially set the timezone `timedatectl set-timezone Europe/Athens`
-* 
+* [Mandatory] Setting up Βtrfs  
+> Partition Disk ( /dev/sda ) :
+>> 1. lsblk -> List drives
+>> 2. blkdiscard /dev/sda	->	Updates the drives firmware to signify that the drive is empty.
+>>>>>>>>>Improves performance and disk longevity (SSD or NVME only).
+>> 3. Any supported partition utility could be used. We will default to GNU parted -> parted
+>> 4.Partition Table		->	
+	
 
 
 
