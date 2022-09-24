@@ -30,7 +30,7 @@ Partition Disk ( /dev/sda ) :
 	2. blkdiscard /dev/sda  ->  Updates the drives firmware to signify that the drive is empty 
 	Improves performance and disk longevity (SSD or NVME only).
 	3. Any supported partition utility could be used. We will default to GNU parted -> parted
-	4.Partition Table ->	
+	4. Partition Table ->	
 	
 ~~~
 
