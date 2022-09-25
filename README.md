@@ -19,15 +19,42 @@ Disclaiming: The following information will be customized and specific for my se
 
 ## Installation Proccess
 
-* [Mandatory] Default user will be nixos -> `sudo su` -> root user
-* [Mandatory] Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation) for Wifi support
-* [Optional] Initially set the timezone `timedatectl set-timezone Europe/Athens`
-* [Mandatory] Setting up Βtrfs  
-  + Partition Disk ( /dev/sda ):   
-     1- `lsblk` -> List drives  
-     2- `blkdiscard /dev/sda` -> Updates the drives firmware to signify that the drive is empty. Improves performance and disk longevity (SSD or NVME only).  
-     3- Any supported partition utility could be used. We will default to GNU parted -> `parted`  
-     4- Partition Table -> `mklabel gpt`  
+* Default user will be nixos -> `sudo su` -> root user
+* Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation) for Wifi support
+* Configuring **Partitions** and **Filesystems**:
+	* `lsblk -f` or `fdisk -l` -> List drives  
+	* `blkdiscard /dev/sda` -> Updates the drives firmware to signify that the drive is empty (**SSD** or **NVME** only).  
+  	* Partition Disk ( `/dev/sda` ):    
+          Any supported partition utility could be used. We will default to GNU **parted** -> `parted`  
+		* Create a **gpt** partition table -> `mklabel gpt`
+		* Create the partitions:  
+		```
+		mkpart NIXBOOT fat32 4mb 1gb  
+		mkpart NIXBTRFS btrfs 1gb 100%
+		set 1 esp on
+		```
+	* Create the filesystems:
+	```
+	mkfs.fat -F32 -n NIXBOOT /dev/sda1
+	mkfs.btrfs -L NIXBTRFS /dev/sda2
+	```
+	* Create the Btrfs subvolumes:
+	```
+	mount /dev/sda2 /mnt
+	btrfs su cr /mnt/@
+	btrfs su vr /mnt/@home
+	umount /mnt
+	```
+	* Mount the Filesystems:
+	```
+	mkdir /mnt/home
+	mount -o ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/sda2 /mnt
+	mount -o ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/sda2 /mnt/home
+	mkdir /mnt/boot
+	mount /dev/sda1 /mnt/boot
+	```
+	Should you use btrfs [compression](https://www.reddit.com/r/btrfs/comments/kul2hh/btrfs_performance/) ? What about the other btrfs [mount options](https://btrfs.readthedocs.io/en/latest/btrfs-man5.html) ?
+		
 
 
 ## Tips & Tricks
