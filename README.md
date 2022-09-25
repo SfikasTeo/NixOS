@@ -65,7 +65,7 @@ Disclaiming: The following information will be customized and specific for my se
 	* Edit `/mnt/etc/nixos/configuration.nix` :
 		* Add the number of configurations stored in the Bootloader : `boot.loader.systemd-boot.configurationLimit = 5;`
 		* Disable the editing of Kernel CL before booting ( **Security** ):`boot.loader.systemd-boot.editor = false;`
-		* Alter `boot.initrd.kernelModules` if any Kernel Moduel is **necessary** for the booting process
+		* Alter `boot.initrd.kernelModules` , if any Kernel Moduel is **necessary** for the booting process
 		* Uncomment **NetworkManager** and **sound**, set your **timezone** and **user** information/applications
 		* Uncomment the `envrionment.systemPackages` and `system.copySystemConfiguration`
 * Install NixOS and reboot -> `nixos-install` 
