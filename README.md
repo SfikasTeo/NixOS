@@ -47,14 +47,23 @@ Disclaiming: The following information will be customized and specific for my se
 	```
 	* Mount the Filesystems:
 	```
-	mkdir /mnt/home
 	mount -o ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/sda2 /mnt
+	mkdir /mnt/home
 	mount -o ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/sda2 /mnt/home
 	mkdir /mnt/boot
 	mount /dev/sda1 /mnt/boot
 	```
 	Should you use btrfs [compression](https://www.reddit.com/r/btrfs/comments/kul2hh/btrfs_performance/) ? What about the other btrfs [mount options](https://btrfs.readthedocs.io/en/latest/btrfs-man5.html) ?
-		
+* Generate and Edit the NixOS configuration files:
+	* `nixos-generate-config --root /mnt`
+	* Edit `/mnt/etc/nixos/hardware-configuration.nix` :
+	```
+	"/"     -> device = "/dev/disk/by-label/NIXBTRFS";
+	"/home" -> device = "/dev/disk/by-label/NIXBTRFS";
+	"/boot" -> device = "/dev/disk/by-label/NIXBOOT";
+	```
+	* Edit `/mnt/etc/nixos/configuration.nix` :
+* Install NixOS and reboot -> `nixos-install` 
 
 
 ## Tips & Tricks
