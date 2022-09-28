@@ -1,3 +1,6 @@
+![alt text](https://github.com/SfikasTeo/NixOS/blob/main/NixOS_logo.svg "NixOS_logo.svg")
+
+
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
