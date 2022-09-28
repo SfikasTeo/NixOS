@@ -1,6 +1,3 @@
-![alt text](https://github.com/SfikasTeo/NixOS/blob/main/NixOS_logo.svg "NixOS_logo.svg")
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -11,8 +8,7 @@
   </ol>
 </details>
 
-
-# [NixOS](https://nixos.wiki/)
+# [NixOS](https://nixos.wiki/) [<img src="https://nixos.org/logo/nixos-logo-only-hires.png" width="220" align="right" alt="NixOS">](https://nixos.org)
 A linux distribution and configuration system based on **Nixpkgs**, a git repository containing all Nix packages.   
 [NixOS](https://stelligent.com/2017/07/11/introduction-to-nixos/) is a divergence of the immutable systems that facilitates [CI/CD](https://www.redhat.com/en/topics/devops/what-cicd-pipeline) pipelines.  
   
@@ -97,10 +93,15 @@ The official channels are parted into small and large branches where the first i
 Secondly a stable and an unstable channel can be found:   
 **Stable** channels push mostly fixes and security paches. They are maintaned until the next branch comes out and they're heavily tested.  
 **Unstable** channels reflect the master branch of Nixpkgs. They are rolling releasing the latest packages.  
+Nix-channels commands:
+* `# nix-channel --list`
+* `# nix-channel --add https://nixos.org/channels/nixos-unstable nixos`
+* `# nix-channel --remove https://nixos.org/channels/nixos-unstable nixos`
+* `# nix-channel --update nixos`
+* `# nixos-rebuild switch --upgrade`  
   
- 
-
-
+The Update command **synchronizes** the binaries with the repository, but the changes do **not** take effect until the system has been **rebuilded**.  
+Automatic updates can be achived by adding `system.autoUpgrade.enable = true;` and `system.autoUpgrade.channel = url/channel;` to the configuration.nix.
 
 ## Altering the [Configuration.nix](https://nixos.org/manual/nixos/stable/index.html#ch-configuration)
 The file `/etc/nixos/configuration.nix` contains the current configuration of your machine.  
@@ -109,8 +110,13 @@ After altering the configuration the following options are advised:
 * `nixos-rebuild test`   -> Build and restart user services but do **not** default it to the boot configuration
 * `nixos-rebuild boot`   -> Build and only set it as the default boot configuration
 * `nixos-rebuild build`  -> Build the configuration to check if everything compiles  smoothly
+* `nixos-rebuild --rollback` -> Rollbacks to previous configuration  
+  
+The Configuration.nix file is by itself a **Nix expression**, the product of a functional language describing how to build packages, dependencies and configurations.  
+
 	
-## [Nix Package Manager](https://nixos.wiki/wiki/Nix_package_manager)  
+## [Nix Package Management](https://nixos.wiki/wiki/Nix_package_manager)  
+
 
 ## Tips & Tricks
 * <nixpkgs/path> -> path/to/nixpkgs/folder
