@@ -12,8 +12,9 @@
 A linux distribution and configuration system based on **Nixpkgs**, a git repository containing all Nix packages.   
 [NixOS](https://stelligent.com/2017/07/11/introduction-to-nixos/) is a divergence of the immutable systems that facilitates [CI/CD](https://www.redhat.com/en/topics/devops/what-cicd-pipeline) pipelines.  
   
-The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies.
-Nix purpose is **reproducibility**, based on a functional, declarative and a pure language, it minimizes the deviation of builded packages between systems.    
+The Nix Ecosystem is a collection of technologies designed to reproducibly build and declaratively configure and manage packages and systems as well as their dependencies.  
+Desktop use of Nix aims for **reproducibility**, the whole system configuration is abstracted and viewed as a Nix expression.
+A functional, declarative and pure language, that minimizes the deviation of builded packages between immutable systems and offers stability, faster development workflow and security.
   
 Disclaiming: The following guide will be customized and specific for my set-up process.  Alternating the guide to your needs is advisable. 
 
