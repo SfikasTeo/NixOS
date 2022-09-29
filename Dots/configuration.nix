@@ -3,13 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 # The first line ({ config, pkgs, ... }:) denotes that this is actually a function that takes at least the two arguments config and pkgs.
+
 { config, pkgs, ... }:
 
 {
-	imports =
-    [ 	# Include the results of the hardware scan.
-    	/etc/nixos/hardware-configuration.nix
-    ];
+	imports = [ # Include the results of the hardware scan.
+    		/etc/nixos/hardware-configuration.nix
+    	];
     
 	# Select internationalisation properties.
 	# i18n.defaultLocale = "en_US.UTF-8";
@@ -38,16 +38,18 @@
 				feh					/* Image viewer and Wallpaper Setter 	*/
 				kitty					/* Terminal Emulator			*/
 				fish					/* Shell 				*/
+				arandr					/* Gui frontend for xrandr		*/
 				xdragon					/* Drag and Drop utility from terminal	*/
 				pavucontrol				/* Gui for Pulseaudio Volume Control	*/
-				xclip					/* X Clipboard Manager			*/
+				copyq					/* Advanced Clipboard Manager		*/
+				flameshot				/* Advanced Screenshot Utility		*/
 				mpv					/* Video player				*/
 				discord					/* Social Platform			*/
 				brave					/* Browser				*/
 				vscode-with-extensions			/* Proprietary Version of vscode	*/
 			];
 		};
-		extraUsers.nihar = {
+		extraUsers.sfikas = {
 			shell = pkgs.fish;
 		};
 	};
@@ -55,7 +57,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
 
-## Envorinment
+## Environment
 	environment.variables = {
 		SUDO_EDITOR = "nvim";
 	};
@@ -67,28 +69,37 @@
 		unzip							/* Zip extraction utility		*/
 		unrar							/* Rar extraction utility		*/
 		git							/* Distributed version control system	*/
-		bspwm							/* Window Manager			*/
+		bspwm							/* Window Manager for X 		*/
 		sxhkd							/* Bspwm Shortcuts Configuration	*/
+		xclip							/* X terminal clipboard			*/
+		xorg.xrandr						/* X display setup utility		*/
 	];
    
-## Sound.
+## Sound
 	sound.enable = true;
 	hardware.pulseaudio.enable = true;
      
 ## Fonts
-	fonts.fonts = with pkgs; [					/**/
+	fonts.fonts = with pkgs; [					/* Font Installation 			*/
 		fira-code						/* Monospace font			*/
 		fira-code-symbols					/* FiraCode unicode ligature glyphs     */
  	];
+	fonts.fontDir.enable = true;					/* Ensures creation of X11/fonts dir    */
 
 ## Services
 	services = {
 		openssh.enable = true;					/* Enable the OpenSSH daemon.		*/
 		xserver.enable = true;					/* Enable the X11 Windowing System.	*/
+		xserver.autorun = true;					/* Xserver started at boot time		*/
 		xserver.layout = "us";					/* Configure keymap in X11		*/
 		xserver.windowManager.bspwm.enable = true;		/* BSPWM				*/
 	#	xserver.libinput.enable = true;				/* Touchpad Support.			*/
+	#	xserver.videoDrivers = [ "nvidia" ];			/* Proprietary Nvidia drivers		*/
 	#	printing.enable = true;					/* Enables CUPS for printers Support.	*/
+	};
+## Programms
+ 	programs = {
+		bash.enableCompletion = true;
 	};
   
 ## Networking
@@ -125,9 +136,20 @@
 	# system.autoUpgrade.allowReboot = true;			/* After automatic update, if needed, reboot		*/
 	system.stateVersion = "21.05"; 					/* Keep the default generated Value			*/
 
+
+
+
 ##	**NOTES**	##
 /*
-	   Various notes about Nix language:
+	Notes about NixOS Configuration:
+	# `xserver.enable = true`  automatically configures the X Server and by default
+		uses LightDM as a display manager. Configuring X server from the beggining
+		look into sx package (alternative to xinit and startx) and at the [Wiki]
+		(https://nixos.wiki/wiki/Using_X_without_a_Display_Manager).
+	# `xserver.autorun = true;`service can be disabled and started through tty using
+		`systemctl start display-manager.service`.
+	
+	Notes about Nix language:
 	 # `let` is recursive and lazy: `let x = x; in x` gives error about infinite
 		recursion; `let x = x; in 5` just evaluates to `5`.
 	 # `with foo; ...` still keeps `foo` visible inside the `...` code.
