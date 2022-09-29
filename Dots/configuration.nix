@@ -103,7 +103,7 @@
 	};
   
 ## Networking
-	networking.hostName = "SF-nxos"
+	networking.hostName = "SF-nxos";
 	networking.firewall = {
   		enable = false;						/* Disables the firewall altogether.	*/
     	#	allowedTCPPorts = [  ];					/* Open ports in the firewall.		*/
