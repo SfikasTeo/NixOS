@@ -34,18 +34,18 @@
 		users.sfikas = {
 			isNormalUser = true;
 			extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-			packages = with pkgs; {
-				feh;						# Image viewer and Wallpaper Setter
-				kitty;						# Terminal Emulator
-				fish;						# Shell 
-				xdragon;					# Drag and Drop utility from terminal
-				pavucontrol;					# Gui for Pulseaudio Volume Control
-				xclip;						# X Clipboard Manager
-				mpv;						# Video player
-				discord;					# Social Platform
-				brave;						# Browser
-				vscode-with-extensions;				# Proprietary Version of vscode
-			};
+			packages = with pkgs; [
+				feh					/* Image viewer and Wallpaper Setter 	*/
+				kitty					/* Terminal Emulator			*/
+				fish					/* Shell 				*/
+				xdragon					/* Drag and Drop utility from terminal	*/
+				pavucontrol				/* Gui for Pulseaudio Volume Control	*/
+				xclip					/* X Clipboard Manager			*/
+				mpv					/* Video player				*/
+				discord					/* Social Platform			*/
+				brave					/* Browser				*/
+				vscode-with-extensions			/* Proprietary Version of vscode	*/
+			];
 		};
 		extraUsers.nihar = {
 			shell = pkgs.fish;
@@ -60,51 +60,50 @@
 		SUDO_EDITOR = "nvim";
 	};
 	
-	environment.systemPackages = with pkgs; {				# System Packages:
-		neovim;								# Editor
-		wget;								#
-		zip;								#
-		unzip;								#
-		unrar;								#
-		git;								#
-		fira-code;							# Monospace font
-		bspwm;								# Window Manager
-		sxhkd;								# Bspwm Shortcuts Configuration
-		
-   };
+	environment.systemPackages = with pkgs; [			/* System Packages:			*/
+		neovim							/* Editor				*/
+		wget2							/* Successor of GNU wget		*/
+		zip							/* Compressor/Archiver			*/
+		unzip							/* Zip extraction utility		*/
+		unrar							/* Rar extraction utility		*/
+		git							/* Distributed version control system	*/
+		bspwm							/* Window Manager			*/
+		sxhkd							/* Bspwm Shortcuts Configuration	*/
+	];
    
 ## Sound.
 	sound.enable = true;
 	hardware.pulseaudio.enable = true;
      
 ## Fonts
-	fonts.fonts = with pkgs; [
-		(nerdfonts.override { fonts = [ "FiraCode" ]; })
-	];
+	fonts.fonts = with pkgs; [					/**/
+		fira-code						/* Monospace font			*/
+		fira-code-symbols					/* FiraCode unicode ligature glyphs     */
+ 	];
 
 ## Services
 	services = {
-		openssh.enable = true;						# Enable the OpenSSH daemon.
-		xserver.enable = true;						# Enable the X11 Windowing System.
-		xserver.layout = "us";						# Configure keymap in X11
-		xserver.windowManager.bspwm.enable = true;			# BSPWM
-	#	xserver.libinput.enable = true;					# Touchpad Support.
-	#	printing.enable = true;						# Enables CUPS for printers Support.
+		openssh.enable = true;					/* Enable the OpenSSH daemon.		*/
+		xserver.enable = true;					/* Enable the X11 Windowing System.	*/
+		xserver.layout = "us";					/* Configure keymap in X11		*/
+		xserver.windowManager.bspwm.enable = true;		/* BSPWM				*/
+	#	xserver.libinput.enable = true;				/* Touchpad Support.			*/
+	#	printing.enable = true;					/* Enables CUPS for printers Support.	*/
 	};
   
 ## Networking
 	networking.hostName = "SF-nxos"
 	networking.firewall = {
-  		enable = false;							# Disables the firewall altogether.
-    #	allowedTCPPorts = [  ];							# Open ports in the firewall.
+  		enable = false;						/* Disables the firewall altogether.	*/
+    	#	allowedTCPPorts = [  ];					/* Open ports in the firewall.		*/
  	#	allowedUDPPorts = [  ];
 	};
 
-	networking.networkmanager.enable = true;				# Enables networkManager.
-	# networking.wireless.enable = true;  					# Enables wireless support via wpa_supplicant.
+	networking.networkmanager.enable = true;			/* Enables networkManager.					*/
+	# networking.wireless.enable = true;  				/* Enables wireless support via wpa_supplicant.			*/
   
-	networking.useDHCP = false;						# The global useDHCP flag is deprecated, therefore explicitly set to false here.
-	networking.interfaces.enp2s0.useDHCP = true;				# Per-interface useDHCP will be mandatory in the future.
+	networking.useDHCP = false;					/* The global useDHCP flag is deprecated			*/
+	networking.interfaces.enp2s0.useDHCP = true;			/* Per-interface useDHCP will be mandatory in the future.	*/
   
 	# Configure network proxy if necessary
 	# networking.proxy.default = "http://user:password@proxy:port/"; 
@@ -113,18 +112,18 @@
 ## Bootloader
 	boot.loader = {
 		systemd-boot = {
-			enable = true;						# Enables the systemd-boot EFI boot loader.
-			configurationLimit = 5;					# Number of configurations at Boot Time.
-			editor = false;						# Disables editing of kernelparameters before Boot. 
+			enable = true;					/* Enables the systemd-boot EFI boot loader.		*/
+			configurationLimit = 5;				/* Number of configurations at Boot Time.		*/
+			editor = false;					/* Disables editing of kernelparameters before Boot. 	*/
 		};
 		efi.canTouchEfiVariables = true;
 	};
 
 
 ## System
-	# system.autoUpgrade.enable = true;					# Auto upgrades
-	# system.autoUpgrade.allowReboot = true;
-	system.stateVersion = "21.05"; 						# Keep the default generated Value
+	# system.autoUpgrade.enable = true;				/* Auto upgrades					*/
+	# system.autoUpgrade.allowReboot = true;			/* After automatic update, if needed, reboot		*/
+	system.stateVersion = "21.05"; 					/* Keep the default generated Value			*/
 
 ##	**NOTES**	##
 /*
