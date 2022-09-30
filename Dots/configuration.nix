@@ -93,7 +93,7 @@
 			enable = true;					/* Enable the X11 Windowing System.	*/
 			autorun = true;					/* Xserver started at boot time		*/
 			layout = "us,gr";				/* Configure keymap in X11		*/
-			xkbOptions = "grp:win_space_toggle";		/* XKB Layout Toggle			*/sdf 	
+			xkbOptions = "grp:win_space_toggle";		/* XKB Layout Toggle			*/	
 			windowManager.bspwm.enable = true;		/* BSPWM				*/
 		#	libinput.enable = true;				/* Touchpad Support.			*/
 		#	videoDrivers = [ "nvidia" ];			/* Proprietary Nvidia drivers		*/
