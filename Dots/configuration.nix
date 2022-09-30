@@ -89,18 +89,24 @@
 
 ## Services
 	services = {
+		xserver = {
+			enable = true;					/* Enable the X11 Windowing System.	*/
+			autorun = true;					/* Xserver started at boot time		*/
+			layout = "us,gr";				/* Configure keymap in X11		*/
+			xkbOptions = "grp:win_space_toggle";		/* XKB Layout Toggle			*/sdf 	
+			windowManager.bspwm.enable = true;		/* BSPWM				*/
+		#	libinput.enable = true;				/* Touchpad Support.			*/
+		#	videoDrivers = [ "nvidia" ];			/* Proprietary Nvidia drivers		*/
+		};
+		
 		openssh.enable = true;					/* Enable the OpenSSH daemon.		*/
-		xserver.enable = true;					/* Enable the X11 Windowing System.	*/
-		xserver.autorun = true;					/* Xserver started at boot time		*/
-		xserver.layout = "us";					/* Configure keymap in X11		*/
-		xserver.windowManager.bspwm.enable = true;		/* BSPWM				*/
-	#	xserver.libinput.enable = true;				/* Touchpad Support.			*/
-	#	xserver.videoDrivers = [ "nvidia" ];			/* Proprietary Nvidia drivers		*/
 	#	printing.enable = true;					/* Enables CUPS for printers Support.	*/
+	
 	};
 ## Programms
  	programs = {
 		bash.enableCompletion = true;
+		fish.enable = true;
 	};
   
 ## Networking
