@@ -32,7 +32,17 @@ Disclaiming: The following guide will be customized and specific for my set-up p
 ## [Installation](https://nixos.org/manual/nixos/stable/index.html#sec-installation) Proccess
 
 * Default user will be nixos -> `sudo su` -> root user
-* Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation-booting-networking) for Wifi support
+* Check for Internet Access ip -a. Check [Manual](https://nixos.org/manual/nixos/stable/index.html#sec-installation-booting-networking) for Wifi support:
+	* Start the wpa_supplicant service: `# systemctl start wpa_supplicant`
+ 	* Run the cli command tool: `wpa_cli` and scan for available networks:  `scan`
+  	* See the Results `scan_results` and execute the following commands:
+  	  ```
+  		add_network
+		set_network 0 ssid "Your_SSID"
+		set_network 0 psk "Your_Passphrase"
+  	  ```
+  	* Select: `select_network 0` and enable: `enable_network 0` the created network.
+  	* Check the network status: `status` and `quit` the cli interface. 
 * Configuring **Partitions** and **Filesystems**:
 	* `lsblk -f` or `fdisk -l` -> List drives  
 	* `blkdiscard /dev/sda` -> Updates the drives firmware to signify that the drive is empty (**SSD** or **NVME** only).  
