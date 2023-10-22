@@ -127,7 +127,7 @@ Any supported partition utility could be used. We will default to GNU **parted**
 		* Uncomment **NetworkManager** and **sound**, set your **timezone** and **user** information/applications
 		* Uncomment the `envrionment.systemPackages` and `system.copySystemConfiguration`
 * Install NixOS and reboot -> `nixos-install`
-* Login as `root` from tty ( **Cntr + Alt + Fkeys** ) and change the user passwd -> `passwd sfikas`
+* Login as `root` from tty ( **Cntr + Alt + Fkeys** ) and change the user passwd -> `passwd whatDoYouWant`
 
 ## [Nix Channels](https://nixos.wiki/wiki/Nix_channels)  
 In plain terms **channels** are regarded as git **branches** in the git nixpkgs repository. A "channel" is a name for the latest "verified" git commits
