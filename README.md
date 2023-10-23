@@ -37,7 +37,7 @@ Disclaiming: The following guide will be customized and specific for my set-up p
  	* Run the cli command tool: `wpa_cli` and scan for available networks:  `scan`
   	* See the Results `scan_results` and execute the following commands:
   	  ```
-  		add_network
+		add_network
 		set_network 0 ssid "Your_SSID"
 		set_network 0 psk "Your_Passphrase"
   	  ```
@@ -49,68 +49,68 @@ Disclaiming: The following guide will be customized and specific for my set-up p
 * `blkdiscard /dev/sda` -> Updates the drives firmware to signify that the drive is empty (**SSD** or **NVME** only).  
 Any supported partition utility could be used. We will default to GNU **parted** -> `# parted /dev/<mmcblk0>` *Depending on the hardware this could be /sda, /nvme0, etc*  
 * Create the partitions:
-   	```
-     	#Create a GPT Partition Table
-	mklabel gpt
-	
-	# Create the Boot Partition
-	mkpart BOOT fat32 4mb 1gb
-	set 1 esp on
+```
+#Create a GPT Partition Table
+mklabel gpt
+
+# Create the Boot Partition
+mkpart BOOT fat32 4mb 1gb
+set 1 esp on
 	 
-	# [Optional] Swap Partition
-	mkpart SWAP linux-swap 1gb Xgb
+# [Optional] Swap Partition
+mkpart SWAP linux-swap 1gb Xgb
 	 
-	# Choose a Root Partition
-	mkpart BTRFS btrfs Xgb 100%
-	mkpart EXT4 ext4 Xgb 100%
-    	```
+# Choose a Root Partition
+mkpart BTRFS btrfs Xgb 100%
+mkpart EXT4 ext4 Xgb 100%
+```
 * Exit gparted: `quit`
 * Formatting the filesystems:
-	```
-	# Format the EFI Boot Partition
-	mkfs.fat -F32 -n EFI /dev/sda1
+```
+# Format the EFI Boot Partition
+mkfs.fat -F32 -n EFI /dev/sda1
 	 
-	# Format the ROOT Partition
-	mkfs.btrfs -L ROOT /dev/sda3
-	mkfs.ext4 -L ROOT -m 1 /dev/sda3
+# Format the ROOT Partition
+mkfs.btrfs -L ROOT /dev/sda3
+mkfs.ext4 -L ROOT -m 1 /dev/sda3
 	 
-	# Format and enable Swap Partition
-	mkswap -L SWAP /dev/sda2
-	swapon /dev/sda2	   
-	```
+# Format and enable Swap Partition
+mkswap -L SWAP /dev/sda2
+swapon /dev/sda2	   
+```
 * Create the Btrfs subvolumes:
-	```
- 	mount /dev/sda3 /mnt
- 	btrfs su cr /mnt/@
- 	btrfs su vr /mnt/@home
- 	umount /mnt
-	```
+```
+mount /dev/sda3 /mnt
+btrfs su cr /mnt/@
+btrfs su vr /mnt/@home
+umount /mnt
+```
 * Tune the ext4 filesystem:
-  	```
-   	# Check all Options:
-	tune2fs -l /dev/sda3 | grep features
+```
+# Check all Options:
+tune2fs -l /dev/sda3 | grep features
 
- 	# Search and apply wanted options
- 	tune2fs -O fast_commit /dev/sda3
+# Search and apply wanted options
+tune2fs -O fast_commit /dev/sda3
  
- 	# Disabling Journal may lead to data loss
- 	# It is not advised but will enhance performance
- 	tune2fs -O "^has_journal" /dev/sda3
-   	```
+# Disabling Journal may lead to data loss
+# It is not advised but will enhance performance
+tune2fs -O "^has_journal" /dev/sda3
+```
 * Mount the Filesystems:
-	```
-	# Mount Btrfs
-	mount -o rw,ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/sda3 /mnt
-	mkdir /mnt/home
-	mount -o rw,ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/sda3 /mnt/home
-	 	
-	# Mount Ext4
-	mount -o rw,noatime,commit=60 /dev/sda3 /mnt
+```
+# Mount Btrfs
+mount -o rw,ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@ /dev/sda3 /mnt
+mkdir /mnt/home
+mount -o rw,ssd,noatime,space_cache=v2,discard=async,compress=zstd:1,subvol=@home /dev/sda3 /mnt/home
+	
+# Mount Ext4
+mount -o rw,noatime,commit=60 /dev/sda3 /mnt
 	 
-	# Mount the Boot Partition
-	mkdir /mnt/boot
-	mount /dev/sda1 /mnt/boot
-	```
+# Mount the Boot Partition
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+```
  Should you use btrfs [compression](https://www.reddit.com/r/btrfs/comments/kul2hh/btrfs_performance/) ? What about the other btrfs [mount options](https://btrfs.readthedocs.io/en/latest/btrfs-man5.html) ?
 * Generate and Edit the NixOS configuration files:
 	* `nixos-generate-config --root /mnt`
